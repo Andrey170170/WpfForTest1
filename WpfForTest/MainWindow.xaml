@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfForTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfForTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="726" Width="800"
+        Style="{DynamicResource {x:Type Window}}">
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="BorderThickness" Value="0"></Setter> 
+        </Style>
+        <Style x:Key="toolBarList" TargetType="ListBox">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="serviceDataTemp">
+            <Border BorderBrush="Black" BorderThickness="2"  Padding="5">
+                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image Source="{Binding CoverImage}" Height="75" Width="75"></Image>
+                    <TextBlock Text="{Binding Title}" FontSize="16" VerticalAlignment="Center" Margin="20 0 0 0"></TextBlock>
+                </WrapPanel>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100 50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ToolBarTray Grid.Row="0" Orientation="Horizontal">
+            <ToolBar Band="1" BandIndex="1">
+                <ListBox x:Name="styleList" Style="{StaticResource ResourceKey=toolBarList}" d:ItemsSource="{d:SampleData ItemCount=2}"></ListBox>
+            </ToolBar>
+            <ToolBar Band="1" BandIndex="2">
+                <Button Click="Service_Click">Услуги</Button>
+                <Button Click="AboutCompany_Click">О компании</Button>
+                <Button Click="OurWorks_Click">Наши работы</Button>
+                <Button Click="FindUs_Click">Как нас найти</Button>
+            </ToolBar>
+        </ToolBarTray>
+        <Grid Grid.Row="1">
+            <ListBox Name="serviceTemplate" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                     ItemTemplate="{StaticResource serviceDataTemp}" d:ItemsSource="{d:SampleData ItemCount=5}">
+            </ListBox>
+        </Grid>
+    </Grid>
+</Window>
