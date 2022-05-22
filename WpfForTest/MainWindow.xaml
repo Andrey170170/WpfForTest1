@@ -25,6 +25,7 @@
             <Setter Property="Width" Value="75"/>
             <Setter Property="Source" Value="C:\Users\24122\Desktop\колледж\зачет\рпм\1макет.jpg"/>
         </Style>
+
         <Style TargetType="ListBox">
             <Setter Property="BorderThickness" Value="0"></Setter> 
         </Style>
@@ -40,6 +41,7 @@
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
         <ToolBarTray Orientation="Horizontal">
+
             <ToolBar Band="1" BandIndex="1">
                 <ListBox x:Name="styleList" Style="{StaticResource ResourceKey=toolBarList}" d:ItemsSource="{d:SampleData ItemCount=2}"></ListBox>
             </ToolBar>
