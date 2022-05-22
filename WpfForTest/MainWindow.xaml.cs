@@ -28,32 +28,6 @@ namespace WpfForTest
             styleList.SelectionChanged += ThemeChanged;
             styleList.ItemsSource = styles;
             styleList.SelectedItem = "light";
-
-            List<Services> bookList = new List<Services>();
-
-            bookList.Add(new Services(
-                @"C:\Users\24122\Desktop\колледж\зачет\рпм\1макет.jpg",
-                "Computer Networking"
-            ));
-            bookList.Add(new Services(
-                @"C:\Users\24122\Desktop\колледж\зачет\рпм\1макет.jpg",
-                "Computer Networking"
-            )); 
-            bookList.Add(new Services(
-                @"C:\Users\24122\Desktop\колледж\зачет\рпм\1макет.jpg",
-                "Computer Networking"
-            )); 
-            bookList.Add(new Services(
-                @"C:\Users\24122\Desktop\колледж\зачет\рпм\1макет.jpg",
-                "Computer Networking"
-            ));
-            bookList.Add(new Services(
-                @"C:\Users\24122\Desktop\колледж\зачет\рпм\1макет.jpg",
-                "Computer Networking"
-            ));
-
-            //Bind it with the ListBox
-            this.serviceTemplate.ItemsSource = bookList;
         }
 
         private void ThemeChanged(object sender, SelectionChangedEventArgs e)
