@@ -24,7 +24,7 @@ namespace WpfForTest
         {
             InitializeComponent();
 
-            List<string> styles = new List<string> { "light", "dark" };
+            var styles = new List<string> { "light", "dark" };
             styleList.SelectionChanged += ThemeChanged;
             styleList.ItemsSource = styles;
             styleList.SelectedItem = "light";
@@ -32,11 +32,11 @@ namespace WpfForTest
 
         private void ThemeChanged(object sender, SelectionChangedEventArgs e)
         {
-            string? style = styleList.SelectedItem as string;
+            var style = styleList.SelectedItem as string;
             // определяем путь к файлу ресурсов
             var uri = new Uri(style?.ToLower() + ".xaml", UriKind.Relative);
             // загружаем словарь ресурсов
-            ResourceDictionary? resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            var resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
             // очищаем коллекцию ресурсов приложения
             Application.Current.Resources.Clear();
             // добавляем загруженный словарь ресурсов
@@ -45,19 +45,7 @@ namespace WpfForTest
 
         private void Service_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(@"Услуги");
-        }
-        private void AboutCompany_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(@"О компании");
-        }
-        private void OurWorks_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(@"Наши работы");
-        }
-        private void FindUs_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(@"Как найти нас ");
+            MessageBox.Show(((Button)sender).Name);
         }
     }
 }

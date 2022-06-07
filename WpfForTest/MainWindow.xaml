@@ -5,51 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfForTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="577" Width="800"
+        Title="MainWindow" Height="701" Width="1098"
         Style="{DynamicResource {x:Type Window}}">
     <Window.Resources>
-        <Style x:Key="Borders">
-            <Setter Property="Border.BorderBrush" Value="Black"/>
-            <Setter Property="Border.BorderThickness" Value="2"/>
-            <Setter Property="Border.Margin" Value="0 0 0 10"/>
-            <Setter Property="Border.Padding" Value="15 5"/>
-            <Setter Property="Border.VerticalAlignment" Value="Top"/>
+        <Style TargetType="Border" x:Key="StyleBorder">
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="VerticalAlignment" Value="top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="0 10 0 0"></Setter>
+        </Style>
+        <Style TargetType="Border" x:Key="innerBorder" BasedOn="{StaticResource StyleBorder}">
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="Text" Value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet lectus et orci vehicula mattis non non ante. Nam pharetra vel eros vitae feugiat. Cras aliquam aliquet dignissim. Nunc dictum est erat, at tincidunt est dapibus id. Pellentesque consectetur in urna quis pretium. Praesent vel consequat nibh. Vestibulum ante "></Setter>
+            <Setter Property="MaxWidth" Value="600"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="20 0 0 0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
         <Style TargetType="Image">
-            <Setter Property="Height" Value="75"/>
-            <Setter Property="Width" Value="75"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
             <Setter Property="Source" Value="C:\Users\24122\Desktop\колледж\зачет\рпм\1макет.jpg"/>
         </Style>
-
         <Style TargetType="ListBox">
-            <Setter Property="BorderThickness" Value="0"></Setter> 
+            <Setter Property="BorderThickness" Value="0"></Setter>
         </Style>
-        <Style x:Key="toolBarList" TargetType="ListBox">
+        <Style x:Key="ToolBarList" TargetType="ListBox">
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"></WrapPanel>
+                        <WrapPanel Orientation="Vertical"></WrapPanel>
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-        <ToolBarTray Orientation="Horizontal">
-
-            <ToolBar Band="1" BandIndex="1">
-                <ListBox x:Name="styleList" Style="{StaticResource ResourceKey=toolBarList}" d:ItemsSource="{d:SampleData ItemCount=2}"></ListBox>
+        <ToolBarTray Orientation="Horizontal" HorizontalAlignment="Center">
+            <ToolBar Band="0" BandIndex="1">
+                <ListBox x:Name="styleList" Style="{StaticResource ResourceKey=ToolBarList}" d:ItemsSource="{d:SampleData ItemCount=2}"></ListBox>
             </ToolBar>
-            <ToolBar Band="1" BandIndex="2">
-                <Button Click="Service_Click">Услуги</Button>
-                <Button Click="AboutCompany_Click">О компании</Button>
-                <Button Click="OurWorks_Click">Наши работы</Button>
-                <Button Click="FindUs_Click">Как нас найти</Button>
+            <ToolBar Band="0" BandIndex="2">
+                <Button Name="Service" Click="Service_Click">Услуги</Button>
+                <Button Name="About_Company" Click="Service_Click">О компании</Button>
+                <Button Name="Our_Works" Click="Service_Click">Наши работы</Button>
+                <Button Name="Find_Us" Click="Service_Click">Как нас найти</Button>
             </ToolBar>
         </ToolBarTray>
         <Grid>
@@ -59,29 +65,61 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Border Grid.Row="0" Style="{StaticResource ResourceKey=Borders}">
-                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image></Image>
-                    <TextBlock Text="Text"></TextBlock>
-                </WrapPanel>
+            <Border Grid.Row="0" Style="{StaticResource StyleBorder}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MinWidth="140"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource innerBorder}" Grid.Column="0">
+                        <Image></Image>
+                    </Border>
+                    <Border Style="{StaticResource innerBorder}" Grid.Column="1">
+                        <TextBlock ></TextBlock>
+                    </Border>
+                </Grid>
             </Border>
-            <Border Grid.Row="1" Style="{StaticResource ResourceKey=Borders}">
-                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image></Image>
-                    <TextBlock Text="Text"></TextBlock>
-                </WrapPanel>
+            <Border Grid.Row="1" Style="{StaticResource StyleBorder}">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MinWidth="140"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource innerBorder}" Grid.Column="0" VerticalAlignment="Center">
+                        <Image></Image>
+                    </Border>
+                    <Border Style="{StaticResource innerBorder}" Grid.Column="1">
+                        <TextBlock ></TextBlock>
+                    </Border>
+                </Grid>
             </Border>
-            <Border Grid.Row="2" Style="{StaticResource ResourceKey=Borders}">
-                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image></Image>
-                    <TextBlock Text="Text"></TextBlock>
-                </WrapPanel>
+            <Border Grid.Row="2" Style="{StaticResource StyleBorder}">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MinWidth="140"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource innerBorder}" Grid.Column="0">
+                        <Image></Image>
+                    </Border>
+                    <Border Style="{StaticResource innerBorder}" Grid.Column="1">
+                        <TextBlock ></TextBlock>
+                    </Border>
+                </Grid>
             </Border>
-            <Border Grid.Row="3" Style="{StaticResource ResourceKey=Borders}">
-                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image></Image>
-                    <TextBlock Text="Text"></TextBlock>
-                </WrapPanel>
+            <Border Grid.Row="3" Style="{StaticResource StyleBorder}">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MinWidth="140"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource innerBorder}" Grid.Column="0">
+                        <Image></Image>
+                    </Border>
+                    <Border Style="{StaticResource innerBorder}" Grid.Column="1">
+                        <TextBlock ></TextBlock>
+                    </Border>
+                </Grid>
             </Border>
         </Grid>
     </StackPanel>
